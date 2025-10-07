@@ -12,10 +12,19 @@
   "linter": {
     "rules": {
       "style": {
-        "noHeadElement": "off"
+        "noHeadElement": "off",
+        "noMagicNumbers": "off",
+        "noNestedTernary": "off"
       },
       "performance": {
         "noImgElement": "off"
+      },
+      "suspicious": {
+        "noConsole": "off"
+      },
+      "a11y": {
+        "noNoninteractiveElementInteractions": "off",
+        "noStaticElementInteractions": "off"
       }
     }
   }

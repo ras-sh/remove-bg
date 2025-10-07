@@ -1,53 +1,23 @@
-# @ras-sh/template-tanstack-start
+# remove-bg
 
-🚀 Full-stack template with TanStack Start. Includes SSR, file-based routing, and modern tooling.
+✂️ AI-powered background removal that runs entirely in your browser. No uploads, no paywalls, fully client-side.
+
+**[Try it live →](https://ras.sh/remove-bg)**
 
 ## Features
 
-- **[TanStack Start](https://tanstack.com/start)** - Full-stack React framework with SSR
-- **TypeScript** - End-to-end type safety
-- **Tailwind CSS v4** + **@ras-sh/ui** - Modern styling and components
-- **Cloudflare Workers** - Edge deployment ready
+- Client-side AI processing with the isnet model
+- Drag and drop interface with real-time progress
+- Export as PNG, JPEG, or WebP
+- Automatic model caching for faster results
 
-## Quick Start
+## Tech Stack
 
-```bash
-pnpm install
-pnpm dev
-```
+Built with [TanStack Start](https://tanstack.com/start) and powered by [IMG.LY's background removal library](https://github.com/imgly/background-removal). Uses ONNX Runtime and WebAssembly to run the ~40MB model directly in your browser.
 
-## Building Your App
+## Development
 
-1. Build routes in `src/routes/` with SSR loaders
-2. Add components in `src/components/`
-3. Update `package.json`, `wrangler.jsonc`, and branding assets
-
-## Scripts
-
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Start development server (port 5173) |
-| `pnpm build` | Build for production |
-| `pnpm preview` | Preview production build |
-| `pnpm deploy` | Deploy to Cloudflare Workers |
-| `pnpm cf-typegen` | Generate Cloudflare Workers types |
-| `pnpm check-types` | Run TypeScript type checking |
-| `pnpm check` | Run linter checks |
-| `pnpm fix` | Auto-fix linting issues |
-
-## Project Structure
-
-```
-src/
-├── routes/         # File-based routing with SSR loaders
-├── components/     # Reusable components
-├── lib/            # Utilities (SEO helper, etc.)
-└── router.tsx      # Router configuration
-```
-
-## Deployment
-
-`pnpm deploy` to Cloudflare Workers
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and guidelines.
 
 ## License
 
