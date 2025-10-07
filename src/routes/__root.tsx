@@ -18,9 +18,9 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1",
       },
       ...seo({
-        title: "ras.sh",
+        title: "remove-bg.ras.sh | AI-powered background removal",
         description:
-          "A collection of side projects, experiments, and tools built with modern technologies",
+          "✂️ AI-powered background removal that runs entirely in your browser. No uploads, no paywalls, fully client-side.",
       }),
     ],
     links: [
