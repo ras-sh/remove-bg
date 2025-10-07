@@ -2,7 +2,7 @@
 
 ✂️ AI-powered background removal that runs entirely in your browser. No uploads, no paywalls, fully client-side.
 
-**[Try it live →](https://ras.sh/remove-bg)**
+**[Try it live →](https://remove-bg.ras.sh)**
 
 ## Features
 
