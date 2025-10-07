@@ -1,7 +1,14 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "tanstack-start-app",
+  "name": "remove-bg",
   "compatibility_date": "2025-09-02",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "@tanstack/react-start/server-entry"
+  "main": "@tanstack/react-start/server-entry",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "remove-bg.ras.sh",
+      "custom_domain": true
+    }
+  ]
 }

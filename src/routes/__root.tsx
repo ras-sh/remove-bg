@@ -59,9 +59,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body className="dark min-h-dvh font-sans text-foreground antialiased">
         <PostHogProvider
-          apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_KEY}
+          apiKey={import.meta.env.VITE_POSTHOG_KEY}
           options={{
-            api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
+            api_host: import.meta.env.VITE_POSTHOG_HOST,
             defaults: "2025-05-24",
             capture_exceptions: true,
             debug: import.meta.env.MODE === "development",
