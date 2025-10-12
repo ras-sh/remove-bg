@@ -1,7 +1,6 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   type BackgroundRemovalOptions,
-  preloadBackgroundRemoval,
   processImageWithBackgroundRemoval,
 } from "~/lib/background-removal";
 
@@ -16,21 +15,11 @@ export function useImageProcessor() {
   const [processing, setProcessing] = useState(false);
   const [processedImages, setProcessedImages] = useState<ProcessedImage[]>([]);
   const [progress, setProgress] = useState(0);
-  const modelLoaded = useRef(false);
+  const [status, setStatus] = useState<string>("");
 
   const processImage = useCallback(
     async (file: File): Promise<ProcessedImage> => {
       const startTime = Date.now();
-
-      // Lazy load model on first image processing
-      if (!modelLoaded.current) {
-        try {
-          await preloadBackgroundRemoval();
-          modelLoaded.current = true;
-        } catch (error) {
-          console.warn("Failed to preload model:", error);
-        }
-      }
 
       const reader = new FileReader();
       const originalDataUrl = await new Promise<string>((resolve, reject) => {
@@ -40,8 +29,9 @@ export function useImageProcessor() {
       });
 
       const options: BackgroundRemovalOptions = {
-        progress: (progressPercent) => {
+        progress: (progressPercent, statusMessage) => {
           setProgress(progressPercent);
+          setStatus(statusMessage);
         },
       };
 
@@ -65,6 +55,7 @@ export function useImageProcessor() {
     async (files: File[]) => {
       setProcessing(true);
       setProgress(0);
+      setStatus("");
 
       const imageFiles = files.filter((f) => f.type.startsWith("image/"));
       const file = imageFiles[0]; // Only process first image
@@ -76,13 +67,19 @@ export function useImageProcessor() {
 
       try {
         const processed = await processImage(file);
+
+        // Brief delay to show completion state before showing results
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
         setProcessedImages([processed]); // Replace with single image
         setProgress(0);
+        setStatus("");
       } catch (error) {
         console.error(`Error processing ${file.name}:`, error);
       } finally {
         setProcessing(false);
         setProgress(0);
+        setStatus("");
       }
     },
     [processImage]
@@ -96,6 +93,7 @@ export function useImageProcessor() {
     processing,
     processedImages,
     progress,
+    status,
     processFiles,
     clearAll,
   };

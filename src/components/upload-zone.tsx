@@ -9,9 +9,15 @@ type UploadZoneProps = {
   onDrop: (files: File[]) => void;
   processing: boolean;
   progress: number;
+  status: string;
 };
 
-export function UploadZone({ onDrop, processing, progress }: UploadZoneProps) {
+export function UploadZone({
+  onDrop,
+  processing,
+  progress,
+  status,
+}: UploadZoneProps) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (files) => {
       const file = files[0];
@@ -62,14 +68,20 @@ export function UploadZone({ onDrop, processing, progress }: UploadZoneProps) {
             <p className="text-lg text-zinc-400">
               Supports JPG, PNG, GIF, and WEBP files
             </p>
+            {!processing && (
+              <p className="mt-3 text-sm text-zinc-500">
+                This will download a 170MB AI model to your browser
+              </p>
+            )}
           </div>
         </div>
       </div>
 
       {processing && (
         <div className="mx-auto w-full max-w-md">
-          <div className="mb-2 text-center text-sm text-zinc-300">
-            {progress > 0 ? `Processing... ${progress}%` : "Loading model..."}
+          <div className="mb-2 flex items-center justify-between text-sm text-zinc-300">
+            <span>{status || "Processing..."}</span>
+            <span className="font-mono text-zinc-400">{progress}%</span>
           </div>
           <Progress className="h-2 w-full" value={progress} />
         </div>

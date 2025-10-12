@@ -6,8 +6,14 @@ import { useImageDownloader } from "~/hooks/use-image-downloader";
 import { useImageProcessor } from "~/hooks/use-image-processor";
 
 export function BackgroundRemover() {
-  const { processing, processedImages, progress, processFiles, clearAll } =
-    useImageProcessor();
+  const {
+    processing,
+    processedImages,
+    progress,
+    status,
+    processFiles,
+    clearAll,
+  } = useImageProcessor();
   const { downloadImage } = useImageDownloader();
 
   const showResults = processedImages.length > 0;
@@ -25,6 +31,7 @@ export function BackgroundRemover() {
           onDrop={processFiles}
           processing={processing}
           progress={progress}
+          status={status}
         />
       )}
     </div>
