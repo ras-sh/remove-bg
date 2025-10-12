@@ -13,7 +13,7 @@
 
 ## Tech Stack
 
-Built with [TanStack Start](https://tanstack.com/start) and powered by [IMG.LY's background removal library](https://github.com/imgly/background-removal). Uses ONNX Runtime and WebAssembly to run the ~40MB model directly in your browser.
+Built with [TanStack Start](https://tanstack.com/start) and powered by [IMG.LY's background removal library](https://github.com/imgly/background-removal). Uses ONNX Runtime and WebAssembly to run the full model directly in your browser.
 
 ## Development
 

@@ -8,7 +8,7 @@ export type BackgroundRemovalOptions = {
   progress?: (progress: number) => void;
 };
 
-const MODEL = "isnet_quint8";
+const MODEL = "isnet";
 
 let modelPreloaded = false;
 
