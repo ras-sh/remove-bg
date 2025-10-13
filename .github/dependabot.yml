@@ -15,3 +15,7 @@ updates:
         update-types:
           - "minor"
           - "patch"
+    # Ignore specific dependencies
+    ignore:
+      - dependency-name: "onnxruntime-web"
+        # Ignore all updates to onnxruntime-web
