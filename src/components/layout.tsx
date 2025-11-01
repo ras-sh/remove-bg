@@ -1,6 +1,5 @@
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { Button } from "@ras-sh/ui";
-import posthog from "posthog-js";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,15 +10,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             remove-bg
           </h1>
 
-          <Button
-            asChild
-            onClick={() => {
-              posthog.capture("github_link_clicked", {
-                project: "remove-bg",
-              });
-            }}
-          >
+          <Button asChild>
             <a
+              data-umami-event="github_link_clicked"
               href="https://github.com/ras-sh/remove-bg"
               rel="noopener noreferrer"
               target="_blank"
@@ -42,12 +35,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         Made with ❤️ by{" "}
         <a
           className="inline-flex flex-wrap items-center gap-1 font-medium underline decoration-zinc-600 underline-offset-2 transition-colors hover:text-zinc-100 hover:decoration-zinc-400"
+          data-umami-event="footer_link_clicked"
           href="https://ras.sh"
-          onClick={() => {
-            posthog.capture("footer_link_clicked", {
-              project: "remove-bg",
-            });
-          }}
           rel="noopener noreferrer"
           target="_blank"
         >

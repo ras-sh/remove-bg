@@ -2,7 +2,6 @@
 
 import { cn, Progress } from "@ras-sh/ui";
 import { Upload } from "lucide-react";
-import posthog from "posthog-js";
 import { useDropzone } from "react-dropzone";
 
 type UploadZoneProps = {
@@ -22,8 +21,7 @@ export function UploadZone({
     onDrop: (files) => {
       const file = files[0];
       if (file) {
-        posthog.capture("image_uploaded", {
-          project: "remove-bg",
+        window.umami?.track("image_uploaded", {
           file_type: file.type,
           file_size: file.size,
           upload_method: isDragActive ? "drag_drop" : "file_picker",

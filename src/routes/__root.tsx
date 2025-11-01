@@ -1,6 +1,5 @@
 /// <reference types="vite/client" />
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-import { PostHogProvider } from "posthog-js/react";
 import type * as React from "react";
 import { DefaultCatchBoundary } from "~/components/default-catch-boundary";
 import { NotFound } from "~/components/not-found";
@@ -22,6 +21,13 @@ export const Route = createRootRoute({
         description:
           "✂️ AI-powered background removal that runs entirely in your browser. No uploads, no paywalls, fully client-side.",
       }),
+    ],
+    scripts: [
+      {
+        src: "https://u.tronite.com/script.js",
+        defer: true,
+        "data-website-id": "9f464ba1-e3ff-4a34-b115-d7c0934ad654",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -58,17 +64,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="dark min-h-dvh font-sans text-foreground antialiased">
-        <PostHogProvider
-          apiKey={import.meta.env.VITE_POSTHOG_KEY}
-          options={{
-            api_host: import.meta.env.VITE_POSTHOG_HOST,
-            defaults: "2025-05-24",
-            capture_exceptions: true,
-            debug: import.meta.env.MODE === "development",
-          }}
-        >
-          {children}
-        </PostHogProvider>
+        {children}
         <Scripts />
       </body>
     </html>

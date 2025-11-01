@@ -1,6 +1,5 @@
 import { Button } from "@ras-sh/ui";
 import { Download, RotateCcw } from "lucide-react";
-import posthog from "posthog-js";
 import { ImageResult } from "~/components/image-result";
 
 type ProcessedImage = {
@@ -26,8 +25,7 @@ export function ResultsView({
   onProcessMore,
 }: ResultsViewProps) {
   function downloadImage(format: "png" | "jpeg" | "webp") {
-    posthog.capture("image_downloaded", {
-      project: "remove-bg",
+    window.umami?.track("image_downloaded", {
       format,
     });
     onDownloadImage(processedImage.processed, processedImage.filename, format);
@@ -38,9 +36,7 @@ export function ResultsView({
       <div className="flex flex-wrap items-center justify-center gap-2 md:justify-between">
         <Button
           onClick={() => {
-            posthog.capture("process_new_image_clicked", {
-              project: "remove-bg",
-            });
+            window.umami?.track("process_new_image_clicked");
             onProcessMore();
           }}
           variant="default"
